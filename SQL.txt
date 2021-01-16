@@ -1,0 +1,99 @@
+Database : Collection of Data in electronic formate.
+DBMS: System Software for creating and managing data.
+FIle Server Arch.
+
+1) CREATE DATABASE databasename;
+2) USE databasename;
+3) DROP DATABASE databasename;
+4) CREATE TABLE tablename (columnname datatype , PRIMARY KEY(COLUMN-NAME));
+5) INSERT INTO tablename VALUES(VALUE1,VALUE2,...);
+6) SELECT COLUMN-NAME FROM tablename
+7) SELECT DISTINCT COLUMN-NAME FROM tablename
+8) SELECT COLUMN-NAME FROM tablename where columnname [condition-name]
+9) SELECT COLUMN-NAME FROM tablename where columnname [condition1] AND [condition2]
+10)SELECT COLUMN-NAME FROM tablename where columnname [condition1] OR [condition2]
+11)SELECT COLUMN-NAME FROM tablename where columnname NOT [condition-name]
+Like Operator use for pattern searching..
+Like Use underscore and percentage.
+12)SELECT COLUMN-NAME FROM tablename where columnname Condition LIKE "Value"
+13)SELECT COLUMN-NAME FROM tablename where columnname BETWEEN condition1 AND condition2
+14)SELECT min(COLUMN-NAME) FROM tablename
+15)SELECT count(*) FROM tablename where condition;
+17)SELECT sum(COLUMN-NAME) FROM tablename
+18)SELECT avg(COLUMN-NAME) FROM tablename
+19)SELECT ltrim('     adsddsda')
+20)SELECT LOWER('SPARTA')
+21)SELECT UPPER('sparta')
+22)SELECT REVERSE('pankaj')
+23)SELECT substring('Original String',Index of string start,Length of String)
+Order BY: Ascending(By Default) and Descending.
+25)SELECT * FROM tablename order by [COLUMN-NAME];
+27)SELECT * FROM tablename order by [COLUMN-NAME] DESC;
+TOP is use for find TOP N Records.
+28)SELECT TOP [Number of Column] columnlist FROM tablename;
+29)SELECT COLUMNLIST FROM tablename where condition GROUP BY columnname Order By columnname
+30)select edept , avg(salary) as avgsalary from employee group by edept having avg(esalary)>100000
+31)UPDATE tablename SET columnname=newvalue [WHERE Condition];
+32)DELETE FROM tablename where condition;
+33)TRUNCATE TABLE tablename(delete records in tables.)
+*****************JOINS IN SQL********************************************
+INNER JOIN : Return Only Matching Values in Both Tables.
+34)SELECT columnname from tablename1 INNER JOIN tablename2 ON  tablename1.column=tablename2.column
+Left JOIN: Return All Records from Left TABLE and Match records from Right TABLE.
+35)SELECT columnname from tablename1 LEFT JOIN tablename2 ON  tablename1.column=tablename2.column
+Right JOIN: Return All Records from Right TABLE and Match records from Left TABLE.
+35++)SELECT column from tablename1 RIGHT JOIN tablename2 ON  tablename1.column=tablename2.column
+37)35++)SELECT column from tablename1 FULL JOIN tablename2 ON  tablename1.column=tablename2.column
+UPDATE USING JOIN
+UNION Operator : Use to combine two or more select queries.
+38) SELECT Column from tablename1 UNION SELECT Column from tablename2
+39) SELECT Column from tablename1 EXCEPT SELECT Column from tablename2(A - B)
+40) SELECT Column from tablename1 INTERSECT SELECT Column from tablename2
+View: Virtual Table Based on Sql Statment.
+41) CREATE VIEW [VIEW-NAME] AS SELECT Column from tablename where condition;
+    select * from [VIEW-NAME]
+42) DROP VIEW VIEW-NAME
+Alter Table is use for add , delete and modify column in table.
+43) Alter TABLE tablename ADD COLUMN-NAME Datatype.
+44) Alter TABLE tablename DROP COLUMN-NAME.
+Merge : Combination of Insert UPDATE and DELETE
+45)Merge TargetTable AS T USING SourceTable AS S ON [JOIN Condition] When Matched Then [UPDATE Statment] When Not Matched BY Target Then [INSERT Statment] When NOT Matched BY Source Then [DELETE Statment]
+Types of user Defined Function: 1) Table Valued 
+2)Scaler Valued.(Int , Varchar , Date ...)
+*******Scaler Valued Function Exmple: 
+  create function add[Function name](@num as int[@Para as datatype]):
+  RETURNS Int[Datatype]
+  BEGIN
+  RETURN(@num+5)
+  end
+  select dbo.add(10)
+*******Tabled Valued Function Exmple:
+  create function add[Function name](@num as int[@Para as datatype]):
+  RETURNS table
+  AS
+  RETURN(SELECT COLUMNLIST FROM TABLE WHERE Condition)
+*******Temporary Table is created in tempdb and Deleted when session end...
+  create table #tablename();
+*******Case Statment
+CASE 
+ WHEN condition1 THEN result1
+ WHEN condition2 THEN result2
+ ELSE result
+END;
+Go
+******IIF Function Alternative to Case 
+IIF(Expression,True Value,False Value)
+******Stored Procedure in Sql: Perpared Sql Code which is Saved And Reused
+CREATE Procedure [ProcedureName] as SqlStatment GO;
+EXEC [ProcedureName]
+******EXCEPTION HANDLING: HANDLE ERRORS 
+BEGIN TRY 
+sql statments
+END TRY
+BEGIN CATCH
+Print Error or rollback transiction.
+END CATCH
+*********TRANSACTION in SQL: GROUP OF COMMANDS THAT CHANGE DATA STORED IN DATABASE
+BEGIN TRANSACTION 
+sql statments
+COMMIT TRANSACTION
